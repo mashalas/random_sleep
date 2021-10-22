@@ -5,7 +5,7 @@ my $REQUIRED_PARAMETERS_COUNT = 2;
 
 sub help()
 {
-  print "random_sleep.pl <min_duration> <max_duration> [verbose]\n\n";
+  print "random_sleep.pl <min_duration> <max_duration> [v|verbose]\n\n";
 }
 
 #--------------------------------явл€етс€ ли строка целым числом----------------------------
@@ -110,6 +110,46 @@ sub swap
   $$ref1 = $val0;
 }
 
+#—корректировать очерЄдность параметров (verbose может быть первым, вторым или последним)
+sub correct_arguments_order($$$)
+{
+  my $a = shift;
+  my $b = shift;
+  my $c = shift;
+  my ($min_duration, $max_duration, $verbose);
+
+  if ($c ne "") {
+    # передано 3 параметра
+    if ($a =~ /^-?v$/i || $a =~ /^-?verbose/i) {
+      # в первом параметре флаг v/verbose
+      $min_duration = $b;
+      $max_duration = $c;
+      $verbose = $a;
+    }
+    elsif ($b =~ /^-?v$/i || $b =~ /^-?verbose/i) {
+      # во втором параметре флаг v/verbose
+      $min_duration = $a;
+      $max_duration = $c;
+      $verbose = $b;
+    }
+    else {
+      $min_duration = $a;
+      $max_duration = $b;
+      $verbose = $c;
+    }
+  }
+  else {
+    $min_duration = $a;
+    $max_duration = $b;
+    $verbose = "";
+  }
+  if ($verbose ne "") {
+    $verbose =~ s/^-//;
+    $verbose = lc($verbose);
+  }
+  return ($min_duration, $max_duration, $verbose);
+}
+
 #-----------------ѕауза длительностью случайное количество секунд (в заданном интервале)------------
 sub random_sleep
 {
@@ -118,6 +158,10 @@ my $max_duration = shift;
 my $verbose = shift;
 my $duration;
 my $s;
+
+  #print "!!!1 $min_duration, $max_duration, $verbose\n";
+  ($min_duration, $max_duration, $verbose) = correct_arguments_order($min_duration, $max_duration, $verbose);
+  #print "!!!2 $min_duration, $max_duration, $verbose\n";
 
   if (is_int_number($min_duration) == 0) {
     print "ERROR: \"min_duration\" is not integer.\n";
@@ -161,8 +205,12 @@ my $s;
     }
     print "\n";
   }
+  elsif ($verbose eq "v") {
+    #print "sleep duration = $duration\n" if ($verbose == "v");
+    print "sleep duration = $duration\n";
+    sleep($duration);
+  }
   else {
-    print "sleep duration = $duration\n" if ($verbose == "v");
     sleep($duration);
   }
   return 0;
