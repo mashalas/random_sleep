@@ -110,7 +110,7 @@ sub swap
   $$ref1 = $val0;
 }
 
-#Скорректировать очерёдность параметров (verbose может быть первым, вторым или последним)
+#---------Скорректировать очерёдность параметров (verbose может быть первым, вторым или последним)---------
 sub correct_arguments_order($$$)
 {
   my $a = shift;
@@ -150,6 +150,23 @@ sub correct_arguments_order($$$)
   return ($min_duration, $max_duration, $verbose);
 }
 
+sub corrent_duration_order($$)
+{
+  my $a = shift;
+  my $b = shift;
+  my ($min_duration, $max_duration);
+
+  if ($a <= $b) {
+    $min_duration = $a;
+    $max_duration = $b;
+  }
+  else {
+    $min_duration = $b;
+    $max_duration = $a;
+  }
+  return ($min_duration, $max_duration);
+}
+
 #-----------------Пауза длительностью случайное количество секунд (в заданном интервале)------------
 sub random_sleep
 {
@@ -159,9 +176,11 @@ my $verbose = shift;
 my $duration;
 my $s;
 
-  #print "!!!1 $min_duration, $max_duration, $verbose\n";
+  print "!!!1 $min_duration, $max_duration, $verbose\n";
   ($min_duration, $max_duration, $verbose) = correct_arguments_order($min_duration, $max_duration, $verbose);
-  #print "!!!2 $min_duration, $max_duration, $verbose\n";
+  print "!!!2 $min_duration, $max_duration, $verbose\n";
+  ($min_duration, $max_duration) = corrent_duration_order($min_duration, $max_duration);
+  print "!!!3 $min_duration, $max_duration, $verbose\n";
 
   if (is_int_number($min_duration) == 0) {
     print "ERROR: \"min_duration\" is not integer.\n";
