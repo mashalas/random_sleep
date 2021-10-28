@@ -206,7 +206,7 @@ my $seconds_duration = -1; # если неверный формат (перед�
 my ($value, $measure);
 my $measure_size = 1;
 
-  if ($raw_duration =~ /^(\d+)([smhd]?)$/i) {
+  if ($raw_duration =~ /^(\d+)([smhdw]?)$/i) {
     # указана единица измерения
     $value = $1;
     $value *= 1;
@@ -214,9 +214,10 @@ my $measure_size = 1;
     $measure = lc($measure);
     #print "empty measure\n" if ($measure eq "");
     #print "[$value] [$measure]\n";
-    $measure_size = 60    if ($measure eq "m"); # минуты
-    $measure_size = 3600  if ($measure eq "h"); # часы
-    $measure_size = 86400 if ($measure eq "d"); # дни
+    $measure_size = 60     if ($measure eq "m"); # минуты
+    $measure_size = 3600   if ($measure eq "h"); # часы
+    $measure_size = 86400  if ($measure eq "d"); # дни
+    $measure_size = 604800 if ($measure eq "w"); # недели
     $seconds_duration = $value * $measure_size;
   }
   return ($seconds_duration, $measure_size);
@@ -227,8 +228,9 @@ sub get_measure_name
 my $measure_size = shift;
   
   return "minute" if ($measure_size == 60);
-  return "hour" if ($measure_size == 3600);
-  return "day" if ($measure_size == 86400);
+  return "hour"   if ($measure_size == 3600);
+  return "day"    if ($measure_size == 86400);
+  return "week"   if ($measure_size == 604800);
   return "second";
 }
 
@@ -285,7 +287,7 @@ my ($min_intervals_count, $max_intervals_count, $intervals_count);
     if ($measure_size > 1) {
       # интервалы дольше 1 секунды (минута, час, день)
       my $measure_name = get_measure_name($measure_size);
-      $measure_name .= "s";
+      #$measure_name .= "s";
       print "sleep $intervals_count times by 1 $measure_name  (totaly $total_sleep_duration_seconds seconds)\n";
     }
     else {
