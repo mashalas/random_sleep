@@ -8,7 +8,7 @@ sub help()
   print "random_sleep.pl <min_duration> <max_duration> [v|verbose]\n\n";
 }
 
-#--------------------------------Является ли строка целым числом----------------------------
+#--------------------------------РЇРІР»СЏРµС‚СЃСЏ Р»Рё СЃС‚СЂРѕРєР° С†РµР»С‹Рј С‡РёСЃР»РѕРј----------------------------
 sub is_int_number($)
 {
 my $s = shift;
@@ -17,7 +17,7 @@ my $s = shift;
   return 0;
 }
 
-#-------------------------------------Округление до целого----------------------------------
+#-------------------------------------РћРєСЂСѓРіР»РµРЅРёРµ РґРѕ С†РµР»РѕРіРѕ----------------------------------
 sub round_int($)
 {
 my $x = shift;
@@ -37,14 +37,14 @@ my $result;
   return $result;
 }
 
-#-----------------------Случайное целое число в заданных пределах (включая концы)---------------
+#-----------------------РЎР»СѓС‡Р°Р№РЅРѕРµ С†РµР»РѕРµ С‡РёСЃР»Рѕ РІ Р·Р°РґР°РЅРЅС‹С… РїСЂРµРґРµР»Р°С… (РІРєР»СЋС‡Р°СЏ РєРѕРЅС†С‹)---------------
 sub get_random_int($$)
 {
 my $min_value = shift;
 my $max_value = shift;
 my $result;
 
-  return $min_value if ($min_value == $max_value); # оба числа границ совпадают
+  return $min_value if ($min_value == $max_value); # РѕР±Р° С‡РёСЃР»Р° РіСЂР°РЅРёС† СЃРѕРІРїР°РґР°СЋС‚
   $result = $min_value + ($max_value - $min_value)*rand();
   $result = round_int($result);
   return $result;
@@ -76,7 +76,7 @@ my $avg = 0.0;
   print "min_x=$min_x  max_=$max_x  avg=$avg\n";
 }
 
-#-------------------------------------Вернуть длину строки--------------------------------------
+#-------------------------------------Р’РµСЂРЅСѓС‚СЊ РґР»РёРЅСѓ СЃС‚СЂРѕРєРё--------------------------------------
 sub strlen
 {
 my $s = shift;
@@ -88,7 +88,7 @@ my $count = 0;
   return $count;
 }
 
-#------------Добавить заданный символ в начале строки до получения заданной длины строки-----------
+#------------Р”РѕР±Р°РІРёС‚СЊ Р·Р°РґР°РЅРЅС‹Р№ СЃРёРјРІРѕР» РІ РЅР°С‡Р°Р»Рµ СЃС‚СЂРѕРєРё РґРѕ РїРѕР»СѓС‡РµРЅРёСЏ Р·Р°РґР°РЅРЅРѕР№ РґР»РёРЅС‹ СЃС‚СЂРѕРєРё-----------
 sub append_before_str($$$)
 {
 my $src_str = shift;
@@ -102,7 +102,7 @@ my $result = $src_str;
   return $result;
 }
 
-#------------------------Текущие дата/время в формате yyyy-mm-dd hh:mm:ss--------------------------
+#------------------------РўРµРєСѓС‰РёРµ РґР°С‚Р°/РІСЂРµРјСЏ РІ С„РѕСЂРјР°С‚Рµ yyyy-mm-dd hh:mm:ss--------------------------
 sub get_timestamp
 {
 my $custom_time = shift;
@@ -123,7 +123,7 @@ my $result;
   return $result;
 }
 
-#------------------Вернуть переданные два параметра поменянными местами------------------
+#------------------Р’РµСЂРЅСѓС‚СЊ РїРµСЂРµРґР°РЅРЅС‹Рµ РґРІР° РїР°СЂР°РјРµС‚СЂР° РїРѕРјРµРЅСЏРЅРЅС‹РјРё РјРµСЃС‚Р°РјРё------------------
 sub swap_with_return
 {
   my $var0 = shift;
@@ -131,7 +131,7 @@ sub swap_with_return
   return ($var1, $var0);
 }
 
-#-----Поменять местами значения в переданных в функцию переменных (ничего не возвращается)-----
+#-----РџРѕРјРµРЅСЏС‚СЊ РјРµСЃС‚Р°РјРё Р·РЅР°С‡РµРЅРёСЏ РІ РїРµСЂРµРґР°РЅРЅС‹С… РІ С„СѓРЅРєС†РёСЋ РїРµСЂРµРјРµРЅРЅС‹С… (РЅРёС‡РµРіРѕ РЅРµ РІРѕР·РІСЂР°С‰Р°РµС‚СЃСЏ)-----
 sub swap
 {
   my $ref0 = \$_[0];
@@ -142,7 +142,7 @@ sub swap
   $$ref1 = $val0;
 }
 
-#---------Скорректировать очерёдность параметров (verbose может быть первым, вторым или последним)---------
+#---------РЎРєРѕСЂСЂРµРєС‚РёСЂРѕРІР°С‚СЊ РѕС‡РµСЂС‘РґРЅРѕСЃС‚СЊ РїР°СЂР°РјРµС‚СЂРѕРІ (verbose РјРѕР¶РµС‚ Р±С‹С‚СЊ РїРµСЂРІС‹Рј, РІС‚РѕСЂС‹Рј РёР»Рё РїРѕСЃР»РµРґРЅРёРј)---------
 sub correct_verbosity_argument_placement($$$)
 {
   my $a = shift;
@@ -151,15 +151,15 @@ sub correct_verbosity_argument_placement($$$)
   my ($min_duration, $max_duration, $verbose);
 
   if ($c ne "") {
-    # передано 3 параметра
+    # РїРµСЂРµРґР°РЅРѕ 3 РїР°СЂР°РјРµС‚СЂР°
     if ($a =~ /^-?v$/i || $a =~ /^-{0,2}verbose$/i) {
-      # в первом параметре флаг v/verbose
+      # РІ РїРµСЂРІРѕРј РїР°СЂР°РјРµС‚СЂРµ С„Р»Р°Рі v/verbose
       $min_duration = $b;
       $max_duration = $c;
       $verbose = $a;
     }
     elsif ($b =~ /^-?v$/i || $b =~ /^-{0,2}verbose$/i) {
-      # во втором параметре флаг v/verbose
+      # РІРѕ РІС‚РѕСЂРѕРј РїР°СЂР°РјРµС‚СЂРµ С„Р»Р°Рі v/verbose
       $min_duration = $a;
       $max_duration = $c;
       $verbose = $b;
@@ -202,21 +202,21 @@ my ($min_duration, $max_duration);
 sub get_duration_seconds($)
 {
 my $raw_duration = shift;
-my $seconds_duration = -1; # если неверный формат (переданный параметр не является числом с одним из суффиксов smhd соответствующих second/minute/hour/day, то функция возвратит -1
+my $seconds_duration = -1; # РµСЃР»Рё РЅРµРІРµСЂРЅС‹Р№ С„РѕСЂРјР°С‚ (РїРµСЂРµРґР°РЅРЅС‹Р№ РїР°СЂР°РјРµС‚СЂ РЅРµ СЏРІР»СЏРµС‚СЃСЏ С‡РёСЃР»РѕРј СЃ РѕРґРЅРёРј РёР· СЃСѓС„С„РёРєСЃРѕРІ smhd СЃРѕРѕС‚РІРµС‚СЃС‚РІСѓСЋС‰РёС… second/minute/hour/day, С‚Рѕ С„СѓРЅРєС†РёСЏ РІРѕР·РІСЂР°С‚РёС‚ -1
 my ($value, $measure);
 my $measure_size = 1;
 
   if ($raw_duration =~ /^(\d+)([smhd]?)$/i) {
-    # указана единица измерения
+    # СѓРєР°Р·Р°РЅР° РµРґРёРЅРёС†Р° РёР·РјРµСЂРµРЅРёСЏ
     $value = $1;
     $value *= 1;
     $measure = $2;
     $measure = lc($measure);
     #print "empty measure\n" if ($measure eq "");
     #print "[$value] [$measure]\n";
-    $measure_size = 60    if ($measure eq "m"); # минуты
-    $measure_size = 3600  if ($measure eq "h"); # часы
-    $measure_size = 86400 if ($measure eq "d"); # дни
+    $measure_size = 60    if ($measure eq "m"); # РјРёРЅСѓС‚С‹
+    $measure_size = 3600  if ($measure eq "h"); # С‡Р°СЃС‹
+    $measure_size = 86400 if ($measure eq "d"); # РґРЅРё
     $seconds_duration = $value * $measure_size;
   }
   return ($seconds_duration, $measure_size);
@@ -232,7 +232,7 @@ my $measure_size = shift;
   return "second";
 }
 
-#-----------------Пауза длительностью случайное количество секунд (в заданном интервале)------------
+#-----------------РџР°СѓР·Р° РґР»РёС‚РµР»СЊРЅРѕСЃС‚СЊСЋ СЃР»СѓС‡Р°Р№РЅРѕРµ РєРѕР»РёС‡РµСЃС‚РІРѕ СЃРµРєСѓРЅРґ (РІ Р·Р°РґР°РЅРЅРѕРј РёРЅС‚РµСЂРІР°Р»Рµ)------------
 sub random_sleep
 {
 my $ERROR_wrong_format_for_min_duration = -1;
@@ -248,7 +248,7 @@ my $atom_sleep;
 my ($min_intervals_count, $max_intervals_count, $intervals_count);
 
   #print "QQQ1 $min_duration, $max_duration, $verbose\n";
-  # [-]v|verbose если не последним параметром, то учесть это
+  # [-]v|verbose РµСЃР»Рё РЅРµ РїРѕСЃР»РµРґРЅРёРј РїР°СЂР°РјРµС‚СЂРѕРј, С‚Рѕ СѓС‡РµСЃС‚СЊ СЌС‚Рѕ
   ($min_duration, $max_duration, $verbose) = correct_verbosity_argument_placement($min_duration, $max_duration, $verbose);
   #print "QQQ2 $min_duration, $max_duration, $verbose\n";
   
@@ -266,7 +266,7 @@ my ($min_intervals_count, $max_intervals_count, $intervals_count);
 
   #($min_duration, $max_duration) = correct_duration_order($min_duration, $max_duration);
   if ($min_duration > $max_duration) {
-    # поменять порядок очерёдность минимальной и максимвльной продолжительности (сначала должна быть минимальная)
+    # РїРѕРјРµРЅСЏС‚СЊ РїРѕСЂСЏРґРѕРє РѕС‡РµСЂС‘РґРЅРѕСЃС‚СЊ РјРёРЅРёРјР°Р»СЊРЅРѕР№ Рё РјР°РєСЃРёРјРІР»СЊРЅРѕР№ РїСЂРѕРґРѕР»Р¶РёС‚РµР»СЊРЅРѕСЃС‚Рё (СЃРЅР°С‡Р°Р»Р° РґРѕР»Р¶РЅР° Р±С‹С‚СЊ РјРёРЅРёРјР°Р»СЊРЅР°СЏ)
     swap($min_duration, $max_duration);
   }
   $measure_size = $min_duration_measure_size;
@@ -277,26 +277,26 @@ my ($min_intervals_count, $max_intervals_count, $intervals_count);
   #print "QQQ3 min_duration=$min_duration, max_duration=$max_duration, verbose=$verbose measure_size=$measure_size min_intervals_count=$min_intervals_count max_intervals_count=$max_intervals_count intervals_count=$intervals_count\n";
 
   if ($verbose eq "v" || $verbose eq "verbose") {
-    #если подробный режим - вывести сколько интервалов ожидания по 1 единице измерения и сколько это всего займёт секунд
-    my $total_sleep_duration_seconds = $intervals_count * $measure_size; # общая продолжительность сна в секундах
+    #РµСЃР»Рё РїРѕРґСЂРѕР±РЅС‹Р№ СЂРµР¶РёРј - РІС‹РІРµСЃС‚Рё СЃРєРѕР»СЊРєРѕ РёРЅС‚РµСЂРІР°Р»РѕРІ РѕР¶РёРґР°РЅРёСЏ РїРѕ 1 РµРґРёРЅРёС†Рµ РёР·РјРµСЂРµРЅРёСЏ Рё СЃРєРѕР»СЊРєРѕ СЌС‚Рѕ РІСЃРµРіРѕ Р·Р°Р№РјС‘С‚ СЃРµРєСѓРЅРґ
+    my $total_sleep_duration_seconds = $intervals_count * $measure_size; # РѕР±С‰Р°СЏ РїСЂРѕРґРѕР»Р¶РёС‚РµР»СЊРЅРѕСЃС‚СЊ СЃРЅР° РІ СЃРµРєСѓРЅРґР°С…
     my $wake_time = time() + $total_sleep_duration_seconds;
     my $wake_timestamp = get_timestamp($wake_time);
 
     if ($measure_size > 1) {
-      # интервалы дольше 1 секунды (минута, час, день)
+      # РёРЅС‚РµСЂРІР°Р»С‹ РґРѕР»СЊС€Рµ 1 СЃРµРєСѓРЅРґС‹ (РјРёРЅСѓС‚Р°, С‡Р°СЃ, РґРµРЅСЊ)
       my $measure_name = get_measure_name($measure_size);
       $measure_name .= "s";
       print "sleep $intervals_count times by 1 $measure_name  (totaly $total_sleep_duration_seconds seconds)\n";
     }
     else {
-      # интервалы - секунды
+      # РёРЅС‚РµСЂРІР°Р»С‹ - СЃРµРєСѓРЅРґС‹
       print "sleep seconds: $total_sleep_duration_seconds\n";
     }
     print "wake at $wake_timestamp\n";
   }
 
   for (my $i=$intervals_count; $i>=1; $i--) {
-    # цикл сна
+    # С†РёРєР» СЃРЅР°
     if ($verbose eq "verbose") {
       $s = "[" . get_timestamp() . "]";
       $s .= "\t" . "$i / $intervals_count";
@@ -306,7 +306,7 @@ my ($min_intervals_count, $max_intervals_count, $intervals_count);
   }
 
   if ($verbose eq "verbose") {
-    # ввести время, когда закончили сон, если включен очень расширенный режим
+    # РІРІРµСЃС‚Рё РІСЂРµРјСЏ, РєРѕРіРґР° Р·Р°РєРѕРЅС‡РёР»Рё СЃРѕРЅ, РµСЃР»Рё РІРєР»СЋС‡РµРЅ РѕС‡РµРЅСЊ СЂР°СЃС€РёСЂРµРЅРЅС‹Р№ СЂРµР¶РёРј
     $s = "[" . get_timestamp() . "]";
     $s .= "\t" . "complete";
     print "$s\n";
@@ -338,12 +338,12 @@ my ($min_intervals_count, $max_intervals_count, $intervals_count);
 #exit(0);
 
 if ($#ARGV == -1) {
-  # нет параметров
+  # РЅРµС‚ РїР°СЂР°РјРµС‚СЂРѕРІ
   help();
   exit(0);
 }
 if ($#ARGV < $REQUIRED_PARAMETERS_COUNT-1) {
-  # недостаточно параметров
+  # РЅРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ РїР°СЂР°РјРµС‚СЂРѕРІ
   print "ERROR: not enought parameters.\n";
   help();
   exit(1);
