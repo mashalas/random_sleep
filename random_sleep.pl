@@ -1,3 +1,4 @@
+#!/usr/bin/perl
 
 use strict;
 
@@ -5,7 +6,11 @@ my $REQUIRED_PARAMETERS_COUNT = 2;
 
 sub help()
 {
-  print "random_sleep.pl <min_duration> <max_duration> [v|verbose]\n\n";
+  print "random_sleep.pl <min_duration[measure]> <max_duration[measure]> [v|verbose]\n";
+  print "\tmin_duration, max_duration - minimal and maximal sleep interval\n";
+  print "\tmeasure - units of measure for min/max-intervals: s or none=seconds, m=minutes, h=hours, d=days, w=weeks\n";
+  print "\tv|verbose - verbose mode; \"verbose\" - more verbosive than \"v\".\n";
+  print "\n";
 }
 
 #--------------------------------Является ли строка целым числом----------------------------
