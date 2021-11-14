@@ -107,14 +107,14 @@ my $result = $src_str;
   return $result;
 }
 
-#------------------------Текущие дата/время в формате yyyy-mm-dd hh:mm:ss--------------------------
+#------------------------Дата/время в формате yyyy-mm-dd hh:mm:ss--------------------------
 sub get_timestamp
 {
 my $custom_time = shift;
 my ($sec,$min,$hour,$mday,$mon,$year,$wday,$yday,$isdst);# = localtime();
 my $result;
 
-  if ($custom_time == undef) {
+  if (!defined($custom_time)) {
     $custom_time = time();
   }
   ($sec,$min,$hour,$mday,$mon,$year,$wday,$yday,$isdst) = localtime($custom_time);
@@ -323,6 +323,12 @@ my ($min_intervals_count, $max_intervals_count, $intervals_count);
 }
 
 #-----------------------------------------main--------------------------------------
+#print time() . "\n"; # unixtime - секунды с 1970
+#my @a = localtime(); # массив: секунды, минуты, часы, день, месяц, год после 1900
+#print $#a . ":@a"  . "\n";
+#my $x = get_timestamp(time());
+#print "x=[$x]\n";
+#exit(0);
 #print is_int_number($ARGV[0]);
 #print $#ARGV;
 #for (my $i=-21; $i<=35; $i++) {
